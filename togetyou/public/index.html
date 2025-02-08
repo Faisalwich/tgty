@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Error 404!</title>
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background: linear-gradient(135deg, #6e7fdb, #8a58e7);
+        font-family: Arial, sans-serif;
+        margin: 0;
+        overflow: hidden;
+      }
+      .card {
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        text-align: center;
+        width: 300px;
+        transition: all 0.5s ease-in-out;
+        transform: scale(0.9);
+        animation: scaleIn 0.5s ease-out forwards;
+      }
+      .btn {
+        padding: 10px 20px;
+        background-color: #000000;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background 0.3s, transform 0.2s ease-in-out;
+      }
+      .btn:hover {
+        background-color: #444;
+        transform: scale(1.1);
+      }
+      h1 {
+        font-size: 1.5em;
+        animation: textFadeIn 1s ease-out forwards;
+      }
+      p {
+        font-size: 1.1em;
+        color: #333;
+        margin-top: 15px;
+        animation: textFadeIn 1s ease-out forwards;
+      }
+
+      /* Animasi untuk teks */
+      @keyframes textFadeIn {
+        0% {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Animasi untuk card */
+      @keyframes scaleIn {
+        0% {
+          transform: scale(0.8);
+          opacity: 0;
+        }
+        100% {
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
+
+      /* Modal Styles */
+      .modal {
+        display: none; /* Tersembunyi secara default */
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.7);
+        justify-content: center;
+        align-items: center;
+        z-index: 3;
+      }
+      .modal-content {
+        background: white;
+        padding: 10px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        position: relative;
+        max-width: 90%;
+        max-height: 90%;
+      }
+      .close-btn {
+        position: absolute;
+        top: 5px;
+        right: 10px;
+        font-size: 20px;
+        cursor: pointer;
+        color: red;
+      }
+
+      video {
+        width: 100%;
+        height: auto;
+        border-radius: 10px;
+      }
+
+      /* Media Query untuk HP */
+      @media (max-width: 480px) {
+        .card {
+          padding: 15px;
+        }
+        .btn {
+          padding: 10px 20px;
+          font-size: 14px;
+        }
+        .modal-content {
+          max-width: 95%;
+          max-height: 80vh;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card" id="message">
+      <h1>Error 404!</h1>
+      <button class="btn" onclick="showConfession()">Refresh</button>
+    </div>
+
+    <!-- Modal untuk Video -->
+    <div class="modal" id="videoModal">
+      <div class="modal-content">
+        <span class="close-btn" onclick="closeModal()">×</span>
+        <video id="popupVideo" controls autoplay>
+          <source src="video/b907b09f61ee9d824c0c68fe5e6bfef7~2.mp4" type="video/mp4" />
+          Maaf, browsermu tidak mendukung pemutaran video.
+        </video>
+      </div>
+    </div>
+
+    <script>
+      function showConfession() {
+        document.getElementById("message").innerHTML = `
+        <h1>Ini bukan error...</h1>
+        <p>Cuma mau ngetes aja kamu klik ini apa engga gitu</p>
+        <p><a href="#" onclick="openModal()">klik aku dulu deh</a></p>
+
+        <p><i>Follow</i> <a href="https://open.spotify.com/user/wicahyofaisal?si=786bcbe57d4a41f1" target="_blank">spotify</a> ku deh</p>
+
+        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/4rYNrM5Yfi7vAs0PF3WnZW?utm_source=generator&theme=0" 
+          width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy">
+        </iframe>
+      `;
+
+        // Animasi kecil setelah perubahan konten
+        document.getElementById("message").style.transform = "scale(1.1)";
+        setTimeout(() => {
+          document.getElementById("message").style.transform = "scale(1)";
+        }, 300);
+      }
+
+      // Fungsi untuk membuka modal
+      function openModal() {
+        const modal = document.getElementById("videoModal");
+        const video = document.getElementById("popupVideo");
+
+        modal.style.display = "flex";
+        video.currentTime = 0; // Mulai dari awal setiap kali modal dibuka
+        video.play();
+      }
+
+      // Fungsi untuk menutup modal
+      function closeModal() {
+        const modal = document.getElementById("videoModal");
+        const video = document.getElementById("popupVideo");
+
+        modal.style.display = "none";
+        video.pause(); // Pause video saat modal ditutup
+      }
+    </script>
+  </body>
+</html>
